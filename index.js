@@ -17,7 +17,6 @@ const CUSTOM_OBJECT_ID = "2-140710940";
 
 // * Code for Route 1 goes here
 app.get("/", async (req, res) => {
-  console.log("Fetching franchises..." + PRIVATE_APP_ACCESS);
   const franchises = `${HUBSPOT_BASE_URL}/${CUSTOM_OBJECT_ID}?properties=nom_de_la_franchise,ville,nombre_de_titres`;
   const headers = {
     Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
@@ -42,6 +41,28 @@ app.get("/update-cobj", (req, res) => {
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
 
 // * Code for Route 3 goes here
+app.post("/update-cobj", async (req, res) => {
+  const properties = {
+    properties: {
+      nom_de_la_franchise: req.body.nom_de_la_franchise,
+      ville: req.body.ville,
+      nombre_de_titres: req.body.nombre_de_titres,
+    },
+  };
+
+  const url = `https://api.hubapi.com/crm/v3/objects/${CUSTOM_OBJECT_ID}`;
+  const headers = {
+    Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+    "Content-Type": "application/json",
+  };
+
+  try {
+    await axios.post(url, properties, { headers });
+    res.redirect("/");
+  } catch (err) {
+    console.error(err);
+  }
+});
 
 /** 
 * * This is sample code to give you a reference for how you should structure your calls. 
