@@ -1,0 +1,17 @@
+doctype html
+html 
+    head 
+        title= title
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="/css/style.css")
+    body    
+        h1 Ajouter une nouvelle franchise
+        form(action="/update-cobj", class="form-wrapper" method="POST")
+            label(for="nom_de_la_franchise") Nom de la franchise:
+            input(type="text", name="nom_de_la_franchise", required)
+            label(for="ville") Ville:
+            input(type="text", name="ville", required)
+            label(for="nombre_de_titres") Nombre de titres:
+            input(type="number", name="nombre_de_titres", required)
+            button(type="submit") Ajouter
+        a(href="/") Return to the homepage
