@@ -1,0 +1,15 @@
+doctype html
+html 
+    head 
+        title= title
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="/css/style.css")
+    body    
+        h1 Custom Objects
+        a(href="/update-cobj") Ajouter un nouvel objet
+        .cards 
+            each obj in data
+                .card 
+                    h2.card__name Nom de la franchise : #{obj.properties.nom_de_la_franchise}
+                    p.card__description Ville : #{obj.properties.ville}
+                    p.card__category Nombre de titres : #{obj.properties.nombre_de_titres}
